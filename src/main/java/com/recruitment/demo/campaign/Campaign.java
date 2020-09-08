@@ -17,12 +17,12 @@ public class Campaign {
     private String status;
     private String town;
     private double radius;
-    private static double emeraldAccount;
+
 
     public Campaign() {
     }
 
-    public Campaign(long id, String name, String keyWord1, String keyWord2, String keyWord3, double bidAmount, double campaignFund, String status, String town, double radius, double emeraldAccount) {
+    public Campaign(long id, String name, String keyWord1, String keyWord2, String keyWord3, double bidAmount, double campaignFund, String status, String town, double radius) {
         this.id = id;
         this.name = name;
         this.keyWord1 = keyWord1;
@@ -33,7 +33,7 @@ public class Campaign {
         this.status = status;
         this.town = town;
         this.radius = radius;
-        this.emeraldAccount = emeraldAccount;
+
 
     }
 
@@ -46,7 +46,7 @@ public class Campaign {
         this.id = id;
     }
 
-    //@Column(name = "name", nullable = false)
+
     public String getName() {
         return name;
     }
@@ -55,7 +55,7 @@ public class Campaign {
         this.name = name;
     }
 
-    //@Column(name = "keyword1", nullable = false)
+
     public String getKeyWord1() {
         return keyWord1;
     }
@@ -63,7 +63,7 @@ public class Campaign {
     public void setKeyWord1(String keyWord1) {
         this.keyWord1 = keyWord1;
     }
-    //@Column(name = "keyword2", nullable = false)
+
     public String getKeyWord2() {
         return keyWord2;
     }
@@ -72,7 +72,7 @@ public class Campaign {
         this.keyWord2 = keyWord2;
     }
 
-    //@Column(name = "keyword3", nullable = false)
+
     public String getKeyWord3() {
         return keyWord3;
     }
@@ -81,7 +81,7 @@ public class Campaign {
         this.keyWord3 = keyWord3;
     }
 
-    //@Column(name = "bid amount", nullable = false)
+
     public double getBidAmount() {
         return bidAmount;
     }
@@ -90,7 +90,7 @@ public class Campaign {
         this.bidAmount = bidAmount;
     }
 
-    //@Column(name = "campaign fund", nullable = false)
+
     public double getCampaignFund() {
         return campaignFund;
     }
@@ -99,7 +99,7 @@ public class Campaign {
         this.campaignFund = campaignFund;
     }
 
-    //@Column(name = "status", nullable = false)
+
     public String getStatus() {
         return status;
     }
@@ -108,7 +108,7 @@ public class Campaign {
         this.status = status;
     }
 
-    //@Column(name = "town", nullable = false)
+
     public String getTown() {
         return town;
     }
@@ -117,7 +117,7 @@ public class Campaign {
         this.town = town;
     }
 
-    //@Column(name = "radius", nullable = false)
+
     public double getRadius() {
         return radius;
     }
@@ -126,11 +126,5 @@ public class Campaign {
         this.radius = radius;
     }
 
-    public static double getEmeraldAccount() {
-        return emeraldAccount;
-    }
 
-    public static void setEmeraldAccount(double emeraldAccount) {
-        Campaign.emeraldAccount = emeraldAccount;
-    }
 }
