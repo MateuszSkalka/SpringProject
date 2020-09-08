@@ -13,31 +13,36 @@ import java.util.Map;
 @RestController @CrossOrigin(origins = "http://localhost:4200")
 @RequestMapping("api/v1")
 public class CampaignController {
+
+    private CampaignManager campaignManager;
+
     @Autowired
-    private CampaignRepository campaignRepository;
+    public CampaignController(CampaignManager campaignManager){
+        this.campaignManager = campaignManager;
+    }
 
     @GetMapping("/campaigns")
-    public List<Campaign> getAllCampaigns(){
-        return campaignRepository.findAll();
+    public Iterable<Campaign> getAllCampaigns(){
+        return campaignManager.findAll();
     }
 
     @GetMapping("/campaigns/{id}")
     public ResponseEntity<Campaign> getCampaignById(@PathVariable(value = "id") Long campaignId)
             throws ResourceNotFoundException {
-        Campaign campaign = campaignRepository.findById(campaignId)
+        Campaign campaign = campaignManager.findById(campaignId)
                 .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + campaignId));
         return ResponseEntity.ok().body(campaign);
     }
 
     @PostMapping("/campaigns")
     public Campaign createCampaign(@RequestBody Campaign campaign) {
-        return campaignRepository.save(campaign);
+        return campaignManager.save(campaign);
     }
 
     @PutMapping("/campaigns/{id}")
     public ResponseEntity<Campaign> updateCampaign(@PathVariable(value = "id") Long campaignId,
                                                     @RequestBody Campaign campaignDetails) throws ResourceNotFoundException {
-        Campaign campaign = campaignRepository.findById(campaignId)
+        Campaign campaign = campaignManager.findById(campaignId)
                 .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + campaignId));
 
         campaign.setName(campaignDetails.getName());
@@ -52,21 +57,19 @@ public class CampaignController {
 
 
         final Campaign updatedCampaign =
-                campaignRepository.save(campaign);
+                campaignManager.save(campaign);
         return ResponseEntity.ok(updatedCampaign);
     }
 
 
     @DeleteMapping("/campaigns/{id}")
-    public Map<String, Boolean> deleteCampaign(@PathVariable(value = "id") Long campaignId)
+    public void deleteCampaign(@PathVariable(value = "id") Long campaignId)
             throws ResourceNotFoundException {
-        Campaign campaign = campaignRepository.findById(campaignId)
+        Campaign campaign = campaignManager.findById(campaignId)
                 .orElseThrow(() -> new ResourceNotFoundException("Campaign not found for this id :: " + campaignId));
 
-        campaignRepository.delete(campaign);
-        Map<String, Boolean> response = new HashMap<>();
-        response.put("deleted", Boolean.TRUE);
-        return response;
+        campaignManager.deleteById(campaignId);
+
     }
 }
 
