@@ -1,7 +1,7 @@
 package com.recruitment.demo.campaign;
 
 
-import com.recruitment.demo.campaign.Campaign;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
